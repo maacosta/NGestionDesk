@@ -1,0 +1,46 @@
+﻿<Window x:Class="NGestionDesk.CompraDetalleLista"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lista de Detalle de Compra" Height="550" Width="725" Initialized="OnInitialized">
+    <Grid Margin="0,0,0, 0">
+        <DataGrid x:Name="dtgLista" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="329" Width="691" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" MouseDoubleClick="dtgLista_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Materia Prima" Binding="{Binding MateriaPrima.Descripcion}" />
+                <DataGridTextColumn Header="Unidad" Binding="{Binding MateriaPrima.Unidad.Abreviacion}" />
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" />
+                <DataGridTextColumn Header="Precio Unitario" Binding="{Binding PrecioUnitario}" />
+                <DataGridTextColumn Header="Precio Total" Binding="{Binding PrecioTotal}" />
+                <DataGridTextColumn Header="Precio c/descuento" Binding="{Binding PrecioTotalConDescuento}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="txtPrecioTotal" HorizontalAlignment="Left" Height="23" Margin="502,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" KeyboardNavigation.TabIndex="2" TextChanged="txtPorcentajeDescuento_TextChanged"/>
+        <TextBox x:Name="txtPrecioTotalConDescuento" HorizontalAlignment="Left" Height="23" Margin="502,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" KeyboardNavigation.TabIndex="3" TextChanged="txtPorcentajeDescuento_TextChanged"/>
+        <Label Content="Fecha de Compra" HorizontalAlignment="Left" Margin="18,17,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dtpFechaCompra" HorizontalAlignment="Left" Margin="126,20,0,0" VerticalAlignment="Top" KeyboardNavigation.TabIndex="0"/>
+        <Label Content="Proveedor" HorizontalAlignment="Left" Margin="18,57,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbProveedor" HorizontalAlignment="Left" Margin="126,57,0,0" VerticalAlignment="Top" Width="184" KeyboardNavigation.TabIndex="1">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}">
+                                <Binding Path="Nombre" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Content="Precio Total" HorizontalAlignment="Left" Margin="337,17,0,0" VerticalAlignment="Top"/>
+        <Label Content="Precio Total con Descuento" HorizontalAlignment="Left" Margin="337,57,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAgregarItem" Content="Agregar Item" Margin="604,113,0,0" VerticalAlignment="Top" Click="btnAgregarItem_Click" KeyboardNavigation.TabIndex="4" HorizontalAlignment="Left" Width="97"/>
+        <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Right" Margin="0,0,16,15" VerticalAlignment="Bottom" Width="75" Click="btnGuardar_Click" KeyboardNavigation.TabIndex="5"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Right" Margin="0,0,119,15" VerticalAlignment="Bottom" Width="75" Click="btnCancelar_Click" KeyboardNavigation.TabIndex="6"/>
+        <Button x:Name="btnBorrar" Content="Borrar" HorizontalAlignment="Left" Margin="10,0,0,15" VerticalAlignment="Bottom" Width="75" Click="btnBorrar_Click" KeyboardNavigation.TabIndex="7"/>
+        <Label Content="Precio Total Calculado" Margin="10,107,581,0" VerticalAlignment="Top"/>
+        <Label Content="Precio Total Calculado con Descuento" HorizontalAlignment="Left" Margin="228,107,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblPrecioTotalCalculado" Content="0" HorizontalAlignment="Left" Margin="147,107,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lblPrecioTotalCalculadoConDescuento" Content="0" HorizontalAlignment="Left" Margin="451,107,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lblPorcentajeDescuento" Content="%" HorizontalAlignment="Left" Margin="646,57,-82,0" VerticalAlignment="Top" FontWeight="Bold"/>
+    </Grid>
+</Window>

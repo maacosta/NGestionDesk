@@ -1,0 +1,27 @@
+﻿<Window x:Class="NGestionDesk.MateriaPrimaEntidad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Materia Prima" Height="180" Width="450" Initialized="OnInitialized">
+    <Grid HorizontalAlignment="Left" Width="440">
+        <Button x:Name="btnGuardar" Content="Guardar" Margin="0,0,45,19" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnGuardar_Click" KeyboardNavigation.TabIndex="2"/>
+        <ComboBox x:Name="cmbUnidad" Margin="139,66,45,0" VerticalAlignment="Top" KeyboardNavigation.TabIndex="1">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="Nombre" />
+                                <Binding Path="Abreviacion" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox x:Name="txtDescripcion" Height="23" Margin="139,26,45,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyboardNavigation.TabIndex="0"/>
+        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="38,22,0,0" VerticalAlignment="Top"/>
+        <Label Content="Unidad" HorizontalAlignment="Left" Margin="38,62,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" Margin="0,0,134,19" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="OnClickCancelar" KeyboardNavigation.TabIndex="3"/>
+
+    </Grid>
+</Window>

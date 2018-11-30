@@ -1,0 +1,9 @@
+﻿<Window x:Class="NGestionDesk.Principal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Principal" Height="500" Width="700">
+    <Grid>
+        <Button x:Name="btnMateriaPrima" Content="Materia Prima" HorizontalAlignment="Left" VerticalAlignment="Top" Width="287" Margin="25,10,0,0" Click="OnClickMateriaPrima"/>
+        <Button x:Name="btnCompra" Content="Compra" HorizontalAlignment="Left" VerticalAlignment="Top" Width="287" Margin="25,46,0,0" Click="OnClickCompra"/>
+    </Grid>
+</Window>
