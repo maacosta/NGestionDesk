@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NGestionDesk.Common.Entity
 {
+    [Serializable]
     public class Marca : Entidad
     {
     }

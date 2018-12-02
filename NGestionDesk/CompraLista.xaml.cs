@@ -143,5 +143,10 @@ namespace NGestionDesk
 
             this.CtlActualizarDtgLista();
         }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

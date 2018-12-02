@@ -39,7 +39,7 @@ namespace NGestionDesk
             this.entidad = entidad;
 
             this.txtDescripcion.Text = this.entidad.Descripcion;
-            this.cmbUnidad.SelectedItem = this.unidadBiz.ObtenerLista().Find(i => i.Abreviacion == this.entidad.Unidad.Abreviacion);
+            this.cmbUnidad.SelectedItem = this.unidadBiz.ObtenerLista().Find(i => i.Codigo == this.entidad.CodigoUnidad);
         }
 
         private void OnInitialized(object sender, EventArgs e)
@@ -63,6 +63,7 @@ namespace NGestionDesk
 
             this.entidad.Descripcion = this.txtDescripcion.Text;
             this.entidad.Unidad = (Unidad)this.cmbUnidad.SelectedItem;
+            this.entidad.CodigoUnidad = this.entidad.Unidad.Codigo;
 
             this.materiaPrimaBiz.Agregar(this.entidad);
 

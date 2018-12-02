@@ -3,6 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Lista de Compras" Height="550" Width="725" Initialized="OnInitialized">
     <Grid Margin="0,0,0, 0">
+        <Label Content="Año" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="-7.684,-0.115"/>
+        <TextBox x:Name="txtAnio" HorizontalAlignment="Left" Height="23" Margin="61,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="txtAnio_TextChanged"/>
+        <Label Content="Mes" HorizontalAlignment="Left" Margin="206,11,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbMes" HorizontalAlignment="Left" Margin="261,14,0,0" VerticalAlignment="Top" Width="147" SelectionChanged="cmbMes_SelectionChanged" />
+        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="626,16,0,0" Width="75" Click="OnClick" Height="20" VerticalAlignment="Top"/>
         <DataGrid x:Name="dtgLista" Margin="10,44,16,52" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" MouseDoubleClick="dtgLista_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
@@ -10,16 +15,11 @@
                 <DataGridTextColumn Header="Proveedor" Binding="{Binding Proveedor.Nombre}" />
                 <DataGridTextColumn Header="Precio Total" Binding="{Binding PrecioTotal}" />
                 <DataGridTextColumn Header="Precio Total c/descuento" Binding="{Binding PrecioTotalConDescuento}" />
-                <DataGridTextColumn Header="Precio Total C" Binding="{Binding PrecioTotalCalculado}" />
-                <DataGridTextColumn Header="Precio Total C c/descuento" Binding="{Binding PrecioTotalConDescuentoCalculado}" />
+                <DataGridTextColumn Header="Cantidad Items" Binding="{Binding CantidadItems}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Right" Margin="0,0,16,10" VerticalAlignment="Bottom" Width="75" Click="OnClick"/>
         <Button x:Name="btnBorrar" Content="Borrar" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="75" Click="btnBorrar_Click"/>
-        <Label Content="Año" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="-7.684,-0.115"/>
-        <Label Content="Mes" HorizontalAlignment="Left" Margin="206,11,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbMes" HorizontalAlignment="Left" Margin="261,14,0,0" VerticalAlignment="Top" Width="147" SelectionChanged="cmbMes_SelectionChanged" />
-        <TextBox x:Name="txtAnio" HorizontalAlignment="Left" Height="23" Margin="61,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="txtAnio_TextChanged"/>
+        <Button x:Name="btnCerrar" Content="Cerrar" Margin="0,0,16,10" VerticalAlignment="Bottom" Click="btnCerrar_Click" HorizontalAlignment="Right" Width="75"/>
 
     </Grid>
 </Window>

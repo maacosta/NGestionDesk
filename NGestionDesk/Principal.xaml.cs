@@ -58,5 +58,21 @@ namespace NGestionDesk
                 log.Error("Compra", ex);
             }
         }
+
+        private void btnProducto_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Hide();
+                var c = new ProductoList();
+                //c.WindowState = System.Windows.WindowState.Maximized;
+                c.ShowDialog();
+                this.Show();
+            }
+            catch (Exception ex)
+            {
+                log.Error("Producto", ex);
+            }
+        }
     }
 }

@@ -69,11 +69,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProductoEntidad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MateriaPrimaEntidad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CompraLista.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProductoLista.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -94,11 +102,17 @@
     <Compile Include="Controls\TextBoxMoneda.xaml.cs">
       <DependentUpon>TextBoxMoneda.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductoEntidad.xaml.cs">
+      <DependentUpon>ProductoEntidad.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MateriaPrimaEntidad.xaml.cs">
       <DependentUpon>MateriaPrimaEntidad.xaml</DependentUpon>
     </Compile>
     <Compile Include="CompraLista.xaml.cs">
       <DependentUpon>CompraLista.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoLista.xaml.cs">
+      <DependentUpon>ProductoLista.xaml</DependentUpon>
     </Compile>
     <Compile Include="MateriaPrimaLista.xaml.cs">
       <DependentUpon>MateriaPrimaLista.xaml</DependentUpon>

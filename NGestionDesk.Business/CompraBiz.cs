@@ -12,15 +12,18 @@ namespace NGestionDesk.Business
     public class CompraBiz
     {
         private CompraDal compraDal;
+        private ProveedorDal proveedorDal;
 
         public CompraBiz(DateTime fecha)
         {
+            this.proveedorDal = FactoryDal<ProveedorDal>.GetDal();
             var aniomes = fecha.Year * 100 + fecha.Month;
             this.compraDal = FactoryDalWithNumber<CompraDal>.GetDal(aniomes);
         }
 
         public void Cargar()
         {
+            this.proveedorDal.Cargar();
             this.compraDal.Cargar();
         }
 
@@ -39,7 +42,9 @@ namespace NGestionDesk.Business
 
         public List<Compra> ObtenerLista()
         {
-            return this.compraDal.ObtenerLista();
+            var list = this.compraDal.ObtenerLista();
+            list.ForEach(i => i.Proveedor = this.proveedorDal.Obtener(i.IdProveedor));
+            return list;
         }
 
         public void Eliminar(Compra compra)

@@ -23,6 +23,8 @@ namespace NGestionDesk
     public partial class CompraDetalleLista : Window
     {
         private ProveedorBiz proveedorBiz;
+        private ProductoBiz presentacionMateriaPrimaBiz;
+
         private Compra compra;
         private Compra compraPreliminar;
 
@@ -30,7 +32,9 @@ namespace NGestionDesk
 
         public CompraDetalleLista()
         {
+            this.presentacionMateriaPrimaBiz = new ProductoBiz();
             this.proveedorBiz = new ProveedorBiz();
+
             this.compraPreliminar = new Compra() { Items = new List<CompraItem>() };
 
             InitializeComponent();
@@ -40,16 +44,19 @@ namespace NGestionDesk
         {
             this.compraPreliminar = compra;
 
+            if (this.compraPreliminar.Items != null) 
+                this.compraPreliminar.Items
+                    .ForEach(i => i.PresentacionMateriaPrima = this.presentacionMateriaPrimaBiz.ObtenerLista().FirstOrDefault(j => j.Id == i.IdPresentacionMateriaPrima));
+
             this.dtpFechaCompra.SelectedDate = this.compraPreliminar.FechaCompra;
-            this.txtPrecioTotal.Text = this.compraPreliminar.PrecioTotal.ToString();
-            this.txtPrecioTotalConDescuento.Text = this.compraPreliminar.PrecioTotalConDescuento.ToString();
-            this.cmbProveedor.SelectedItem = this.proveedorBiz.ObtenerLista().Find(i => i.Id == this.compraPreliminar.Proveedor.Id);
+            this.cmbProveedor.SelectedItem = this.proveedorBiz.ObtenerLista().FirstOrDefault(i => i.Id == this.compraPreliminar.IdProveedor);
 
             this.CtlActualizarDtgLista();
         }
 
         private void OnInitialized(object sender, EventArgs e)
         {
+            this.presentacionMateriaPrimaBiz.Cargar();
             this.proveedorBiz.Cargar();
 
             this.dtpFechaCompra.SelectedDate = DateTime.Now;
@@ -68,6 +75,7 @@ namespace NGestionDesk
 
             this.lblPrecioTotalCalculado.Content = t.ToString();
             this.lblPrecioTotalCalculadoConDescuento.Content = td.ToString();
+            this.lblPorcentajeDescuento.Content = t != 0m && td != t ? string.Format("{0:0.00} %", (td / t - 1m) * 100m) : string.Empty;
 
             this.dtgLista.ItemsSource = null;
             this.dtgLista.ItemsSource = this.compraPreliminar.Items;
@@ -81,22 +89,8 @@ namespace NGestionDesk
                 MessageBox.Show("Debe seleccionar una fecha de compra");
                 return;
             }
-            var precioTotal = 0m;
-            if (!decimal.TryParse(this.txtPrecioTotal.Text, out precioTotal))
-            {
-                MessageBox.Show("El precio total no tiene un formato valido");
-                return;
-            }
-            var precioConDescuento = precioTotal;
-            if (!string.IsNullOrEmpty(this.txtPrecioTotalConDescuento.Text) && !decimal.TryParse(this.txtPrecioTotalConDescuento.Text, out precioConDescuento))
-            {
-                MessageBox.Show("El precio total con descuento no tiene un formato valido");
-                return;
-            }
 
             this.compraPreliminar.FechaCompra = this.dtpFechaCompra.SelectedDate.Value;
-            this.compraPreliminar.PrecioTotal = precioTotal;
-            this.compraPreliminar.PrecioTotalConDescuento = precioConDescuento;
             this.compraPreliminar.Proveedor = (Proveedor)this.cmbProveedor.SelectedItem;
 
             this.compra = this.compraPreliminar;
@@ -116,7 +110,7 @@ namespace NGestionDesk
             }
         }
 
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
             this.compra = null;
             this.Close();
@@ -153,15 +147,6 @@ namespace NGestionDesk
                 this.compraPreliminar.Items.Insert(index, edicion.CompraItem);
 
                 this.CtlActualizarDtgLista();
-            }
-        }
-
-        private void txtPorcentajeDescuento_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            decimal t, td = 0m;
-            if(decimal.TryParse(this.txtPrecioTotal.Text, out t)&&decimal.TryParse(this.txtPrecioTotalConDescuento.Text, out td))
-            {
-                this.lblPorcentajeDescuento.Content = string.Format("{0:0.00} %", (td / t - 1m) * 100m);
             }
         }
     }

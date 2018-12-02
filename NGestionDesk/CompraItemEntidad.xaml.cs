@@ -21,16 +21,14 @@ namespace NGestionDesk
     /// </summary>
     public partial class CompraItemEntidad : Window
     {
-        private MateriaPrimaBiz materiaPrimaBiz;
-        private MarcaBiz marcaBiz;
+        private ProductoBiz presentacionMateriaPrimaBiz;
         CompraItem compraItem;
 
         public CompraItem CompraItem { get { return this.compraItem; } }
 
         public CompraItemEntidad()
         {
-            this.materiaPrimaBiz = new MateriaPrimaBiz();
-            this.marcaBiz = new MarcaBiz();
+            this.presentacionMateriaPrimaBiz = new ProductoBiz();
 
             InitializeComponent();
         }
@@ -39,20 +37,18 @@ namespace NGestionDesk
         {
             this.compraItem = entidad;
 
-            this.cmbMarca.SelectedItem = this.marcaBiz.ObtenerLista().Find(i => i.Id == this.compraItem.Marca.Id);
-            this.cmbMateriaPrima.SelectedItem = this.materiaPrimaBiz.ObtenerLista().Find(i => i.Id == this.compraItem.MateriaPrima.Id);
+            this.cmbPresentacionMateriaPrima.SelectedItem = this.presentacionMateriaPrimaBiz.ObtenerLista().FirstOrDefault(i => i.Id == this.compraItem.IdPresentacionMateriaPrima);
             this.txtCantidad.Text = this.compraItem.Cantidad.ToString();
             this.txtPrecioUnitario.Text = this.compraItem.PrecioUnitario.ToString();
+            this.txtPrecioTotal.Text = this.compraItem.PrecioTotal.ToString();
             this.txtPrecioConDescuento.Text = this.compraItem.PrecioTotalConDescuento.ToString();
         }
 
         private void OnInitialized(object sender, EventArgs e)
         {
-            this.materiaPrimaBiz.Cargar();
-            this.marcaBiz.Cargar();
+            this.presentacionMateriaPrimaBiz.Cargar();
 
-            this.cmbMarca.ItemsSource = this.marcaBiz.ObtenerLista();
-            this.cmbMateriaPrima.ItemsSource = this.materiaPrimaBiz.ObtenerLista();
+            this.cmbPresentacionMateriaPrima.ItemsSource = this.presentacionMateriaPrimaBiz.ObtenerLista();
         }
 
         private void OnClickCancelar(object sender, RoutedEventArgs e)
@@ -63,6 +59,11 @@ namespace NGestionDesk
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            if (this.cmbPresentacionMateriaPrima.SelectedItem == null)
+            {
+                MessageBox.Show("El producto es obligatorio");
+                return;
+            }
             var cantidad = 0;
             if (!int.TryParse(this.txtCantidad.Text, out cantidad))
             {
@@ -105,8 +106,8 @@ namespace NGestionDesk
             if (precioConDescuento == 0m) precioConDescuento = precioTotal;
 
             this.compraItem = new CompraItem();
-            this.compraItem.Marca = (Marca)this.cmbMarca.SelectedItem;
-            this.compraItem.MateriaPrima = (MateriaPrima)this.cmbMateriaPrima.SelectedItem;
+            this.compraItem.PresentacionMateriaPrima = (Producto)this.cmbPresentacionMateriaPrima.SelectedItem;
+            if (this.compraItem.PresentacionMateriaPrima != null) this.compraItem.IdPresentacionMateriaPrima = this.compraItem.PresentacionMateriaPrima.Id;
             this.compraItem.Cantidad = cantidad;
             this.compraItem.PrecioUnitario = precioUnitario;
             this.compraItem.PrecioTotal = precioTotal;

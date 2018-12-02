@@ -1,17 +1,21 @@
-﻿<Window x:Class="NGestionDesk.MateriaPrimaList"
+﻿<Window x:Class="NGestionDesk.ProductoList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Lista de Materia Prima" Height="400" Width="525" Initialized="OnInitialized">
+        Title="Lista de Productos" Height="400" Width="525" Initialized="OnInitialized">
     <Grid Margin="0,0,0, 0">
-        <Button x:Name="btnAgregar" Content="Agregar" Margin="0,0,16,339" Click="OnClick" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" RenderTransformOrigin="0.533,-2.75"/>
+        <Button x:Name="btnAgregar" Content="Agregar" Margin="0,10,16,0" Click="btnAgregar_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
         <DataGrid x:Name="dtgLista" Margin="10,35,16,52" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" MouseDoubleClick="dtgLista_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" />
-                <DataGridTextColumn Header="Unidad" Binding="{Binding Unidad.Nombre}" />
+                <DataGridTextColumn Header="Materia Prima" Binding="{Binding MateriaPrima.Descripcion}" />
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" />
+                <DataGridTextColumn Header="Unidad Medida" Binding="{Binding UnidadMedida.Codigo}" />
+                <DataGridTextColumn Header="Marca" Binding="{Binding Marca.Nombre}" />
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnBorrar" Content="Borrar" Margin="10,0,0,25" Click="btnBorrar_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75"/>
         <Button x:Name="btnCerrar" Content="Cerrar" Margin="0,0,16,10" Click="btnCerrar_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+
     </Grid>
 </Window>

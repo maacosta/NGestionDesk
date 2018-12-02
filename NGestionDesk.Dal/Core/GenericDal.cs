@@ -3,6 +3,7 @@ using NGestionDesk.Common.Interface;
 using NGestionDesk.Dal.Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,23 @@ namespace NGestionDesk.Dal.Core
 
         public GenericDal()
         {
-            this.dal = new XmlDalSerializer(string.Format("{0}.xml", typeof(Entity).Name));
+            this.CheckAndCreatePath("Datos");
+            this.dal = new XmlDalSerializer(string.Format(@"Datos\{0}.xml", typeof(Entity).Name));
         }
 
         public GenericDal(int number)
         {
+            this.CheckAndCreatePath("Datos");
             this.number = number;
-            this.dal = new XmlDalSerializer(string.Format("{0}_{1}.xml", typeof(Entity).Name, number));
+            this.dal = new XmlDalSerializer(string.Format(@"Datos\{0}_{1}.xml", typeof(Entity).Name, number));
+        }
+
+        private void CheckAndCreatePath(string path)
+        {
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
 
         public void Cargar()

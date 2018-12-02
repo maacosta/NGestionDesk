@@ -20,35 +20,35 @@ namespace NGestionDesk
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MateriaPrimaList : Window
+    public partial class ProductoList : Window
     {
-        private MateriaPrimaBiz materiaPrimaBiz;
+        private ProductoBiz productoBiz;
 
-        public MateriaPrimaList()
+        public ProductoList()
         {
-            this.materiaPrimaBiz = new MateriaPrimaBiz();
+            this.productoBiz = new ProductoBiz();
 
             InitializeComponent();
         }
 
         private void OnInitialized(object sender, EventArgs e)
         {
-            this.materiaPrimaBiz.Cargar();
+            this.productoBiz.Cargar();
 
             this.CtlActualizarDtgLista();
         }
 
         private void CtlActualizarDtgLista()
         {
-            var list = this.materiaPrimaBiz.ObtenerLista();
+            var list = this.productoBiz.ObtenerLista();
 
             this.dtgLista.ItemsSource = null;
             this.dtgLista.ItemsSource = list;
         }
 
-        private void OnClick(object sender, RoutedEventArgs e)
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            var nuevo = new MateriaPrimaEntidad();
+            var nuevo = new ProductoEntidad();
             nuevo.ShowDialog();
 
             this.CtlActualizarDtgLista();
@@ -58,8 +58,8 @@ namespace NGestionDesk
         {
             if (this.dtgLista.SelectedItem == null) return;
 
-            var mp = (MateriaPrima)this.dtgLista.SelectedItem;
-            var edicion = new MateriaPrimaEntidad();
+            var mp = (Producto)this.dtgLista.SelectedItem;
+            var edicion = new ProductoEntidad();
             edicion.SetEntidad(mp);
             edicion.ShowDialog();
 
@@ -74,8 +74,8 @@ namespace NGestionDesk
                 return;
             }
 
-            var mp = (MateriaPrima)this.dtgLista.SelectedItem;
-            this.materiaPrimaBiz.Eliminar(mp);
+            var mp = (Producto)this.dtgLista.SelectedItem;
+            this.productoBiz.Eliminar(mp);
 
             this.CtlActualizarDtgLista();
         }

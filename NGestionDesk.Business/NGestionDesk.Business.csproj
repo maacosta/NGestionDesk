@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="CompraBiz.cs" />
     <Compile Include="MarcaBiz.cs" />
+    <Compile Include="ProductoBiz.cs" />
+    <Compile Include="UnidadMedidaBiz.cs" />
     <Compile Include="UnidadBiz.cs" />
     <Compile Include="ProveedorBiz.cs" />
     <Compile Include="MateriaPrimaBiz.cs" />

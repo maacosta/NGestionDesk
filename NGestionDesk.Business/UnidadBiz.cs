@@ -17,11 +17,10 @@ namespace NGestionDesk.Business
         {
             this.unidades = new List<Unidad>()
                 {
-                    new Unidad() { Nombre = "Unidad", Abreviacion = "und" },
-                    new Unidad() { Nombre = "Gramo", Abreviacion = "gr" },
-                    new Unidad() { Nombre = "Kilogramo", Abreviacion = "kg" },
-                    new Unidad() { Nombre = "Centimetros cubicos", Abreviacion = "cc" },
-                    new Unidad() { Nombre = "Litro", Abreviacion = "lt" },
+                    new Unidad() { Codigo = "CTD", Nombre = "Cantidad" },
+                    new Unidad() { Codigo = "MSA", Nombre = "Masa" },
+                    new Unidad() { Codigo = "VOL", Nombre = "Volumen" },
+                    new Unidad() { Codigo = "CPD", Nombre = "Capacidad" },
                 };
         }
 

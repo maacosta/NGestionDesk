@@ -42,6 +42,8 @@
     <Compile Include="Entity\Compra.cs" />
     <Compile Include="Entity\CompraItem.cs" />
     <Compile Include="Entity\Marca.cs" />
+    <Compile Include="Entity\Producto.cs" />
+    <Compile Include="Entity\UnidadMedida.cs" />
     <Compile Include="Entity\Unidad.cs" />
     <Compile Include="Entity\Entidad.cs" />
     <Compile Include="Entity\MateriaPrima.cs" />
