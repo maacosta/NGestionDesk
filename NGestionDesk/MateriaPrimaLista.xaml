@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Lista de Materia Prima" Height="400" Width="525" Initialized="OnInitialized">
     <Grid Margin="0,0,0, 0">
-        <Button x:Name="btnAgregar" Content="Agregar" Margin="0,0,16,339" Click="OnClick" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" RenderTransformOrigin="0.533,-2.75"/>
+        <Button x:Name="btnAgregar" Content="Agregar" Margin="0,10,16,0" Click="OnClick" HorizontalAlignment="Right" Width="75" RenderTransformOrigin="0.533,-2.75" Height="20" VerticalAlignment="Top"/>
         <DataGrid x:Name="dtgLista" Margin="10,35,16,52" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" MouseDoubleClick="dtgLista_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
